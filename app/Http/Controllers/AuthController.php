@@ -51,7 +51,7 @@ return response()->json([
                                                             
 $validateUser = Validator::make($request->all(),[
 
-    'email'=>'required',
+    'email'=>'required|email',
     'password'=>'required',
 ]);
 
@@ -73,8 +73,8 @@ $authuser =Auth::user();
 
         'status'=>true,
         'message'=>'User Logined SuccessFully',
-    'Token'=>$authuser->createToken("API Token")->PlainTextToken, 
-    'Token_type'=>'Bearer',
+'Token'=>$authuser->createToken($authuser->email)->plainTextToken,
+    'Token_type'=>'bearer',
      ],200);
 
 
